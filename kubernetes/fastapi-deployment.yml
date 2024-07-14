@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fast-api
+  template:
+    metadata:
+      labels:
+        app: fast-api
+    spec:
+      containers:
+      - name: fast-api
+        image: shady25/fast-api
+        ports:
+        - containerPort: 8000
+      #   volumeMounts:
+      #   - name: kube-config
+      #     mountPath: /root/.kube
+      #   - name: minikube-config
+      #     mountPath: /home/shady/.minikube
+      # volumes:
+      # - name: kube-config
+      #   persistentVolumeClaim:
+      #     claimName: pvc-kubeconfig
+      # - name: minikube-config
+      #   persistentVolumeClaim:
+      #     claimName: pv-minikubeconfig
